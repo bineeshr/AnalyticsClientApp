@@ -17,7 +17,7 @@ import androidx.work.Worker;
 
 public class CaptureAnalyticsWork extends Worker {
     String Tag = MainActivity.class.getName();
-    private String serverAppUri = "server.test.aidl.app.com.aidltestserver";
+    private String serverAppUri = "analytics.server.capture.app.com.analyticserverapp";
     private ICaptureAnalytics iCaptureAnalytics;
 
     @NonNull
