@@ -9,19 +9,21 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import analytics.capture.app.com.ICaptureAnalytics;
-import analytics.capture.app.com.activity.MainActivity;
+import analytics.client.capture.app.com.activity.MainActivity;
 import androidx.work.Worker;
 
 public class CaptureAnalyticsWork extends Worker {
     String Tag = MainActivity.class.getName();
     private String serverAppUri = "server.test.aidl.app.com.aidltestserver";
     private ICaptureAnalytics iCaptureAnalytics;
+
     @NonNull
     @Override
     public Result doWork() {
-        if(appInstalledOrNot(serverAppUri)) {
+        if (appInstalledOrNot(serverAppUri)) {
             if (iCaptureAnalytics == null) {
                 initConnection();
             }
@@ -36,9 +38,9 @@ public class CaptureAnalyticsWork extends Worker {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Log.d(Tag, "Service Connected");
             iCaptureAnalytics = ICaptureAnalytics.Stub.asInterface((IBinder) iBinder);
-
+            Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
             try {
-                Log.i("data",""+iCaptureAnalytics.event("String data"));
+                Log.i("data", "" + iCaptureAnalytics.event("String data"));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -62,12 +64,12 @@ public class CaptureAnalyticsWork extends Worker {
             intent.setPackage(serverAppUri);
 
             // binding to remote service
-           getApplicationContext().bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
+            getApplicationContext().bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
         }
     }
 
     private boolean appInstalledOrNot(String uri) {
-        PackageManager pm =getApplicationContext().getPackageManager();
+        PackageManager pm = getApplicationContext().getPackageManager();
         boolean app_installed;
         try {
             pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
