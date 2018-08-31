@@ -1,37 +1,24 @@
 package analytics.client.capture.app.com.workmanger;
 
 import android.app.Service;
+import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
 import analytics.capture.app.com.ICaptureAnalytics;
 import analytics.client.capture.app.com.activity.MainActivity;
-import androidx.work.Worker;
 
-public class CaptureAnalyticsWork extends Worker {
+public class CaptureAnalyticsWork extends JobService {
     String Tag = MainActivity.class.getName();
     private String serverAppUri = "analytics.server.capture.app.com.analyticserverapp";
     private ICaptureAnalytics iCaptureAnalytics;
-
-    @NonNull
-    @Override
-    public Result doWork() {
-        if (appInstalledOrNot(serverAppUri)) {
-            if (iCaptureAnalytics == null) {
-                initConnection();
-            }
-
-
-        }
-        return Worker.Result.SUCCESS;
-    }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -78,5 +65,20 @@ public class CaptureAnalyticsWork extends Worker {
             app_installed = false;
         }
         return app_installed;
+    }
+
+    @Override
+    public boolean onStartJob(JobParameters params) {
+        if (appInstalledOrNot(serverAppUri)) {
+            if (iCaptureAnalytics == null) {
+                initConnection();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onStopJob(JobParameters params) {
+        return false;
     }
 }
