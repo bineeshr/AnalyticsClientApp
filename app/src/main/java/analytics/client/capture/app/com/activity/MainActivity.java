@@ -29,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarm, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 30000, pendingIntent);
-        }else{
-            scheduleJob(this);
+
         }
+        scheduleJob(this);
+
     }
+
 
 }

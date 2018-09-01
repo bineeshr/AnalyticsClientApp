@@ -26,6 +26,13 @@
                 <action android:name="android.intent.action.USER_BACKGROUND_EMULATED"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".reciever.StateChangeRecevier">
+            <intent-filter>
+                <action android:name="harman.intent.action.SYSTEM_STATE_CHANGED"/>
+                <category android:name="gm.category.VEHICLE_HMI" />
+
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
