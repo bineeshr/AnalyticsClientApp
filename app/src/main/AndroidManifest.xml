@@ -20,11 +20,12 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".workmanger.CaptureAnalyticsWork"
-            android:enabled="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="false" />
+        <service android:name=".workmanger.CaptureService"/>
+        <receiver android:name=".reciever.UserSwitchReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_BACKGROUND_EMULATED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
