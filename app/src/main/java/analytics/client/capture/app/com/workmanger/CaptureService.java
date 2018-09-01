@@ -31,16 +31,18 @@ public class CaptureService extends Service {
         super.onCreate();
 
 
-        if (appInstalledOrNot(serverAppUri)) {
-            if (iCaptureAnalytics == null) {
-                initConnection();
-            }
-        }
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        if (appInstalledOrNot(serverAppUri)) {
+            if (iCaptureAnalytics == null) {
+                initConnection();
+            }else{
+                Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
+            }
+        }
         return START_STICKY;
     }
 
