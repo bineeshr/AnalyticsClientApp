@@ -8,5 +8,5 @@ interface IAnalyticsInterface {
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
      */
-String event(String event);
+String event(in Bundle event,in Bundle[] option);
 }

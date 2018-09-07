@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
@@ -43,6 +44,7 @@ public class CaptureService extends Service {
                 initConnection();
             }else{
                 Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
+                sendEvent();
             }
         }
         return START_STICKY;
@@ -83,11 +85,7 @@ public class CaptureService extends Service {
             Log.d(Tag, "Service Connected");
             iCaptureAnalytics = IAnalyticsInterface.Stub.asInterface((IBinder) iBinder);
             Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
-            try {
-                Log.i("data", "" + iCaptureAnalytics.event("String data"));
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            sendEvent();
         }
 
         @Override
@@ -96,4 +94,17 @@ public class CaptureService extends Service {
             iCaptureAnalytics = null;
         }
     };
+
+
+    private void sendEvent(){
+        try {
+            Bundle bundle=new Bundle();
+            bundle.putString("event","eventTrack");
+
+            Bundle[] options=new Bundle[1];
+            Log.i("data", "" + iCaptureAnalytics.event(bundle,options));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }
