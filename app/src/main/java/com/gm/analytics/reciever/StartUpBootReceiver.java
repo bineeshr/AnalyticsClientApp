@@ -4,15 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import static com.gm.analytics.util.AppUtil.scheduleJob;
+import static com.gm.analytics.util.AppUtil.setAlarmManager;
 
 
-public class AnalyticsBrocastReceiver extends BroadcastReceiver {
+public class StartUpBootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        scheduleJob(context);
+        setAlarmManager(context);
     }
-
-
 }

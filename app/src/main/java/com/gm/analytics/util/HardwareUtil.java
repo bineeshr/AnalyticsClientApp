@@ -1,4 +1,4 @@
-package com.gm.android.vehicle.papiconfigrequest.util;
+package com.gm.analytics.util;
 
 import android.os.Build;
 

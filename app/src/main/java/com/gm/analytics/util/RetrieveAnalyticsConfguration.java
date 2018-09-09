@@ -1,11 +1,9 @@
-package com.gm.android.vehicle.papiconfigrequest;
+package com.gm.analytics.util;
 
-import android.os.Build;
 import android.os.SystemClock;
 
-import com.gm.android.vehicle.papiconfigrequest.emulated.EmulatedVinUtil;
-import com.gm.android.vehicle.papiconfigrequest.payload.ConfigResponse;
-import com.gm.android.vehicle.papiconfigrequest.util.HardwareUtil;
+import com.gm.analytics.payload.ConfigResponse;
+
 
 public class RetrieveAnalyticsConfguration {
 
@@ -19,7 +17,7 @@ public class RetrieveAnalyticsConfguration {
     private static final String DEFAULT_MAX_QUERIES = "2";
     private static final String DEFAULT_VIN_PART = "VINVINVIN";
     private static final String DEFAULT_GUID = "null";
-    private static final String DEFAULT_VIN = EmulatedVinUtil.getVin();
+//    private static final String DEFAULT_VIN = EmulatedVinUtil.getVin();
     private static final String DEFAULT_SID = String.valueOf(System.currentTimeMillis() - SystemClock.elapsedRealtime());
 
     public static ConfigResponse mConfigResponse;
@@ -47,7 +45,7 @@ public class RetrieveAnalyticsConfguration {
         mConfigResponse.setMaxQueues(DEFAULT_MAX_QUERIES);
         mConfigResponse.setVinPart(DEFAULT_VIN_PART);
         mConfigResponse.setGuid(DEFAULT_GUID);
-        mConfigResponse.setVin(DEFAULT_VIN);
+//        mConfigResponse.setVin(DEFAULT_VIN);
         mConfigResponse.setSid(DEFAULT_SID);
     }
 }

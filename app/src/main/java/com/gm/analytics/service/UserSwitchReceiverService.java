@@ -1,8 +1,6 @@
-package analytics.client.capture.app.com.Service;
+package com.gm.analytics.service;
 
-import android.app.IntentService;
 import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,10 +9,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import analytics.client.capture.app.com.Receiver.UserSwitchReceiver;
-import analytics.client.capture.app.com.util.AppUtil;
-
-
+import com.gm.analytics.reciever.UserSwitchReceiver;
+import com.gm.analytics.util.AppUtil;
 
 
 public class UserSwitchReceiverService extends Service{
@@ -44,9 +40,6 @@ public class UserSwitchReceiverService extends Service{
 
         intentFilter.addAction(Intent.ACTION_USER_BACKGROUND);
         intentFilter.setPriority(100);
-
-        //userSwitchReceiver = new UserSwitchReceiver();
-        //registerReceiver(userSwitchReceiver, intentFilter);
 
         userSwitchReceiver = new UserSwitchReceiver() {
             @Override

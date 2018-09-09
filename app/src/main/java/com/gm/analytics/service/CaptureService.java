@@ -1,4 +1,4 @@
-package com.gm.analytics.workmanger;
+package com.gm.analytics.service;
 
 import android.app.Service;
 import android.content.ComponentName;
