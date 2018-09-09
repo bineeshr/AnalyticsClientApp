@@ -1,11 +1,12 @@
-package analytics.client.capture.app.com.reciever;
+package com.gm.analytics.reciever;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import analytics.client.capture.app.com.util.AppUtil;
+import com.gm.analytics.util.AppUtil;
+
 
 public class UserSwitchReceiver extends BroadcastReceiver {
     @Override

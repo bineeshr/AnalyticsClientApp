@@ -1,10 +1,11 @@
-package analytics.client.capture.app.com.reciever;
+package com.gm.analytics.reciever;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import static analytics.client.capture.app.com.util.AppUtil.scheduleJob;
+import static com.gm.analytics.util.AppUtil.scheduleJob;
+
 
 public class AnalyticsBrocastReceiver extends BroadcastReceiver {
 
@@ -12,8 +13,6 @@ public class AnalyticsBrocastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         scheduleJob(context);
     }
-
-
 
 
 }

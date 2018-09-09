@@ -1,9 +1,10 @@
-package analytics.client.capture.app.com.util;
+package com.gm.analytics.util;
 
 import android.content.Context;
 import android.content.Intent;
 
-import analytics.client.capture.app.com.workmanger.CaptureService;
+import com.gm.analytics.workmanger.CaptureService;
+
 
 public class AppUtil {
     private static final int JOB_ID_UPDATE = 0x1000;

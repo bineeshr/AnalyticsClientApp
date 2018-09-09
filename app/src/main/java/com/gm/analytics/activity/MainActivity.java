@@ -1,4 +1,4 @@
-package analytics.client.capture.app.com.activity;
+package com.gm.analytics.activity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
-import analytics.client.capture.app.com.R;
-import analytics.client.capture.app.com.reciever.AnalyticsBrocastReceiver;
+import com.gm.analytics.R;
+import com.gm.analytics.reciever.AnalyticsBrocastReceiver;
 
-import static analytics.client.capture.app.com.util.AppUtil.scheduleJob;
+import static com.gm.analytics.util.AppUtil.scheduleJob;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setAlarmManager();
-    }
 
+    }
     void setAlarmManager() {
         Intent alarm = new Intent(this, AnalyticsBrocastReceiver.class);
         boolean alarmRunning = (PendingIntent.getBroadcast(this, 0, alarm, PendingIntent.FLAG_NO_CREATE) != null);
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 30000, pendingIntent);
 
         }
+
+
         scheduleJob(this);
 
     }

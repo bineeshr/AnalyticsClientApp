@@ -1,24 +1,26 @@
-package analytics.client.capture.app.com.workmanger;
+package com.gm.analytics.workmanger;
 
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import analytics.capture.app.com.ICaptureAnalytics;
-import analytics.client.capture.app.com.activity.MainActivity;
+import com.gm.analytics.IAnalyticsInterface;
+import com.gm.analytics.activity.MainActivity;
+
 
 public class CaptureService extends Service {
 
     String Tag = MainActivity.class.getName();
     private String serverAppUri = "analytics.server.capture.app.com.analyticserverapp";
-    private ICaptureAnalytics iCaptureAnalytics;
+    private IAnalyticsInterface iCaptureAnalytics;
 
     @Nullable
     @Override
@@ -41,6 +43,7 @@ public class CaptureService extends Service {
                 initConnection();
             }else{
                 Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
+                sendEvent();
             }
         }
         return START_STICKY;
@@ -49,7 +52,7 @@ public class CaptureService extends Service {
 
     private void initConnection() {
         if (iCaptureAnalytics == null) {
-            Intent intent = new Intent(ICaptureAnalytics.class.getName());
+            Intent intent = new Intent(IAnalyticsInterface.class.getName());
 
             /*this is service name*/
             intent.setAction("aidl_service_calc");
@@ -79,13 +82,9 @@ public class CaptureService extends Service {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Log.d(Tag, "Service Connected");
-            iCaptureAnalytics = ICaptureAnalytics.Stub.asInterface((IBinder) iBinder);
+            iCaptureAnalytics = IAnalyticsInterface.Stub.asInterface((IBinder) iBinder);
             Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
-            try {
-                Log.i("data", "" + iCaptureAnalytics.event("String data"));
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            sendEvent();
         }
 
         @Override
@@ -94,4 +93,16 @@ public class CaptureService extends Service {
             iCaptureAnalytics = null;
         }
     };
+
+
+    private void sendEvent(){
+        try {
+            Bundle options=new Bundle();
+            options.putString("event","eventTrack");
+            Bundle[] events=new Bundle[1];
+            iCaptureAnalytics.trackt(events,options);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }
