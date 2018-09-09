@@ -11,7 +11,6 @@ public class AnalyticsBrocastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         scheduleJob(context);
-
     }
 
 

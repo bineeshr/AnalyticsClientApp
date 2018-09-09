@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class CaptureAnalyticsWork extends JobService {
             iCaptureAnalytics = ICaptureAnalytics.Stub.asInterface((IBinder) iBinder);
             Toast.makeText(getApplicationContext(), "SERVER CONNECTED", Toast.LENGTH_SHORT).show();
             try {
-                Log.i("data", "" + iCaptureAnalytics.event("String data"));
+                Log.i("data", "" + iCaptureAnalytics.event(Bundle.EMPTY));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
