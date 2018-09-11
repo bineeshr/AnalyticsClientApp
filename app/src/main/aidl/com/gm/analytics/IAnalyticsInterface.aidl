@@ -8,5 +8,5 @@ interface IAnalyticsInterface {
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
      */
-Bundle trackt(in Bundle[] event,in Bundle option);
+Bundle track(in Bundle[] event,in Bundle option);
 }

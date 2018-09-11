@@ -19,7 +19,7 @@ import com.gm.analytics.activity.MainActivity;
 public class CaptureService extends Service {
 
     String Tag = MainActivity.class.getName();
-    private String serverAppUri = "analytics.server.capture.app.com.analyticserverapp";
+    private String serverAppUri = "com.gm.analytics.server";
     private IAnalyticsInterface iCaptureAnalytics;
 
     @Nullable
@@ -100,7 +100,7 @@ public class CaptureService extends Service {
             Bundle options=new Bundle();
             options.putString("event","eventTrack");
             Bundle[] events=new Bundle[1];
-            iCaptureAnalytics.trackt(events,options);
+            iCaptureAnalytics.track(events,options);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
