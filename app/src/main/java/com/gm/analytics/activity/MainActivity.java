@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.gm.analytics.R;
 
-import static com.gm.analytics.util.AppUtil.setAlarmManager;
+import static com.gm.analytics.util.AnalyticsUtil.setAlarmManager;
 
 
 public class MainActivity extends AppCompatActivity {

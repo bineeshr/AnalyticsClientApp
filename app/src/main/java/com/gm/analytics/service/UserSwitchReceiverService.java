@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.gm.analytics.reciever.UserSwitchReceiver;
-import com.gm.analytics.util.AppUtil;
+import com.gm.analytics.util.AnalyticsUtil;
 
 
 public class UserSwitchReceiverService extends Service{
@@ -46,7 +46,7 @@ public class UserSwitchReceiverService extends Service{
             public void onReceive(Context context, Intent intent) {
                 Toast.makeText(context,"Profile Switch. ACTION_USER_BACKGROUND!!", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onReceive: User Switch Occurred ");
-                AppUtil.scheduleJob(context);
+                AnalyticsUtil.scheduleJob(context);
             }
         };
 
